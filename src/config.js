@@ -34,15 +34,19 @@ export const CONFIG = {
   // --- Canvas Coordinates & Rendering Settings ---
   // Template image is 4500 x 5625 pixels (portrait A4-ish format)
   canvas: {
-    width: 4500,
-    height: 5625,
+    /*width: 4500,
+    height: 5625,*/
+    width: 1080,
+    height: 1350,
     templateUrl: "/template.png",
 
     // Circular profile photo settings — right-side circle on the poster
     photo: {
-      centerX: 3230,     // X coordinate of the circle center
-      centerY: 2870,     // Y coordinate of the circle center
-      radius: 860,       // Radius of the circle (calibrated to the gold ring)
+      /*centerX: 3230,     // X coordinate of the circle center
+      centerY: 2870,     // Y coordinate of the circle center*/
+      centerX: 776,     // X coordinate of the circle center
+      centerY: 689,     // Y coordinate of the circle center
+      radius: 250,       // Radius of the circle (calibrated to the gold ring) 860
       borderColor: "#cbae2d",  // KCAU Gold border
       borderWidth: 20,    // Template already has the gold ring drawn — no extra border needed
       borderwidthcolor: "#192c57", // KCAU Gold border
@@ -51,18 +55,23 @@ export const CONFIG = {
 
     // Attendee name rendering settings — gold rectangle below the circle
     name: {
-      centerX: 3200,
+      //centerX: 3200,
+      centerX: 776.07,
 
       // Vertical center of gold rectangle
-      centerY: 4100,
+      //centerY: 4100,
+      centerY: 971.07,
 
       // Leave padding on both sides
-      maxWidth: 1900,
+      maxWidth: 1800, //1900
+      maxWidth: 500,
 
       fontFamily: "'Futura-Bold', 'Futura Medium', 'Jost', 'Outfit', sans-serif",
 
-      fontSize: 245,
-      minFontSize: 55,
+      //fontSize: 245,
+      fontSize: 65,
+      //minFontSize: 55,
+      minFontSize: 25,
 
       fontWeight: "bold",
 
