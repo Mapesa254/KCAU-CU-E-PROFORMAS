@@ -3,11 +3,12 @@ import { CONFIG } from './config';
 import PosterCanvas from './components/PosterCanvas';
 
 // ─── Canvas → UI scale factor for the image editor ───────────────────────────
-// The canvas photo circle has radius 860px (diameter 1720px).
-// Our UI editor displays a circle of diameter 260px.
+// The canvas photo circle has radius 860px, but the actual upload area is inset by 40px.
+// Use the inner photo diameter to match the editor preview with final canvas output.
 const CANVAS_PHOTO_DIAMETER = CONFIG.canvas.photo.radius * 2; // 1720
+const CANVAS_PHOTO_INNER_DIAMETER = (CONFIG.canvas.photo.radius - 40) * 2; // 1640
 const UI_EDITOR_SIZE = 260; // px
-const UI_TO_CANVAS_SCALE = CANVAS_PHOTO_DIAMETER / UI_EDITOR_SIZE; // ~6.615
+const UI_TO_CANVAS_SCALE = CANVAS_PHOTO_INNER_DIAMETER / UI_EDITOR_SIZE; // ~6.3077
 
 function App() {
   const [name, setName] = useState('');
@@ -44,9 +45,9 @@ function App() {
       setErrorMsg('Invalid file format. Please upload a JPG, PNG, or WEBP image.');
       return;
     }
-    const maxSize = 8 * 1024 * 1024;
+    const maxSize = 20 * 1024 * 1024;
     if (file.size > maxSize) {
-      setErrorMsg('File is too large. Please upload an image smaller than 8MB.');
+      setErrorMsg('File is too large. Please upload an image smaller than 20MB.');
       return;
     }
     const objectUrl = URL.createObjectURL(file);
@@ -373,7 +374,7 @@ function App() {
                     <span className="upload-text">
                       {photoUrl ? 'Photo Uploaded Successfully' : 'Drag & drop your photo, or browse'}
                     </span>
-                    <span className="upload-subtext">Supports PNG, JPG, or WEBP (Max 8MB)</span>
+                    <span className="upload-subtext">Supports PNG, JPG, or WEBP (Max 20MB)</span>
                     <input
                       type="file"
                       accept="image/*"
@@ -430,7 +431,7 @@ function App() {
                         alt="Profile preview"
                         className="img-editor-img"
                         style={{
-                          transform: `translate(-50%, -50%) translate(${uiCropX}px, ${uiCropY}px) scale(${zoom}) rotate(${rotation}deg)`,
+                          transform: `translate(-50%, -50%) rotate(${rotation}deg) scale(${zoom}) translate(${uiCropX}px, ${uiCropY}px)`,
                         }}
                         draggable={false}
                       />

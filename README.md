@@ -26,7 +26,7 @@ The app allows a user to upload a profile photo, enter their full name, adjust t
 ## Key features
 
 - Image upload with drag-and-drop support.
-- JPG / PNG / WEBP validation and 8MB file size limit.
+- JPG / PNG / WEBP validation and 20MB file size limit.
 - Live canvas preview of the rendered poster.
 - Photo positioning via dragging inside the preview area.
 - Zoom and rotation controls for the uploaded photo.
