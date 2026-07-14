@@ -151,7 +151,7 @@ function App() {
           <img src={CONFIG.branding.logo} alt="KCAU CU Logo" className="header-logo" />
           <div className="header-title-container">
             <span className="header-org-name">{CONFIG.event.organizer}</span>
-            <span className="header-subtitle">Muhuru Bay Mission 2026</span>
+            <span className="header-subtitle">E-Proformas Card Generator</span>
           </div>
         </div>
       </header>
