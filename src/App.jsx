@@ -205,77 +205,79 @@ function App() {
             alt="Muhuru Bay Mission 2026 — Theme: Repentance and Healing (2 Chronicles 7:14)"
             className="event-hero-logo"
           />
-          <div className="countdown-container">
-            {/* Days Circle */}
-            <div className="countdown-circle">
-              <svg className="countdown-ring" viewBox="0 0 120 120">
-                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
-                <circle 
-                  className="countdown-ring-progress" 
-                  cx="60" 
-                  cy="60" 
-                  r="55"
-                  style={{
-                    strokeDashoffset: 345.6 * (1 - (countdown.days / Math.max(totalCountdown / (1000 * 60 * 60 * 24), countdown.days || 1)))
-                  }}
-                />
-              </svg>
-              <div className="countdown-value">{countdown.days}</div>
-              <div className="countdown-label">DAYS</div>
-            </div>
+          <div className="countdown-wrapper">
+            <div className="countdown-container">
+              {/* Days Circle */}
+              <div className="countdown-circle">
+                <svg className="countdown-ring" viewBox="0 0 120 120">
+                  <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                  <circle 
+                    className="countdown-ring-progress" 
+                    cx="60" 
+                    cy="60" 
+                    r="55"
+                    style={{
+                      strokeDashoffset: 345.6 * (1 - (countdown.days / Math.max(totalCountdown / (1000 * 60 * 60 * 24), countdown.days || 1)))
+                    }}
+                  />
+                </svg>
+                <div className="countdown-value">{countdown.days}</div>
+                <div className="countdown-label">DAYS</div>
+              </div>
 
-            {/* Hours Circle */}
-            <div className="countdown-circle">
-              <svg className="countdown-ring" viewBox="0 0 120 120">
-                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
-                <circle 
-                  className="countdown-ring-progress" 
-                  cx="60" 
-                  cy="60" 
-                  r="55"
-                  style={{
-                    strokeDashoffset: 345.6 * (1 - (countdown.hours / 24))
-                  }}
-                />
-              </svg>
-              <div className="countdown-value">{countdown.hours}</div>
-              <div className="countdown-label">HOURS</div>
-            </div>
+              {/* Hours Circle */}
+              <div className="countdown-circle">
+                <svg className="countdown-ring" viewBox="0 0 120 120">
+                  <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                  <circle 
+                    className="countdown-ring-progress" 
+                    cx="60" 
+                    cy="60" 
+                    r="55"
+                    style={{
+                      strokeDashoffset: 345.6 * (1 - (countdown.hours / 24))
+                    }}
+                  />
+                </svg>
+                <div className="countdown-value">{countdown.hours}</div>
+                <div className="countdown-label">HOURS</div>
+              </div>
 
-            {/* Minutes Circle */}
-            <div className="countdown-circle">
-              <svg className="countdown-ring" viewBox="0 0 120 120">
-                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
-                <circle 
-                  className="countdown-ring-progress" 
-                  cx="60" 
-                  cy="60" 
-                  r="55"
-                  style={{
-                    strokeDashoffset: 345.6 * (1 - (countdown.minutes / 60))
-                  }}
-                />
-              </svg>
-              <div className="countdown-value">{countdown.minutes}</div>
-              <div className="countdown-label">MINUTES</div>
-            </div>
+              {/* Minutes Circle */}
+              <div className="countdown-circle">
+                <svg className="countdown-ring" viewBox="0 0 120 120">
+                  <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                  <circle 
+                    className="countdown-ring-progress" 
+                    cx="60" 
+                    cy="60" 
+                    r="55"
+                    style={{
+                      strokeDashoffset: 345.6 * (1 - (countdown.minutes / 60))
+                    }}
+                  />
+                </svg>
+                <div className="countdown-value">{countdown.minutes}</div>
+                <div className="countdown-label">MINUTES</div>
+              </div>
 
-            {/* Seconds Circle */}
-            <div className="countdown-circle">
-              <svg className="countdown-ring" viewBox="0 0 120 120">
-                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
-                <circle 
-                  className="countdown-ring-progress" 
-                  cx="60" 
-                  cy="60" 
-                  r="55"
-                  style={{
-                    strokeDashoffset: 345.6 * (1 - (countdown.seconds / 60))
-                  }}
-                />
-              </svg>
-              <div className="countdown-value">{countdown.seconds}</div>
-              <div className="countdown-label">SECONDS</div>
+              {/* Seconds Circle */}
+              <div className="countdown-circle">
+                <svg className="countdown-ring" viewBox="0 0 120 120">
+                  <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                  <circle 
+                    className="countdown-ring-progress" 
+                    cx="60" 
+                    cy="60" 
+                    r="55"
+                    style={{
+                      strokeDashoffset: 345.6 * (1 - (countdown.seconds / 60))
+                    }}
+                  />
+                </svg>
+                <div className="countdown-value">{countdown.seconds}</div>
+                <div className="countdown-label">SECONDS</div>
+              </div>
             </div>
           </div>
 
