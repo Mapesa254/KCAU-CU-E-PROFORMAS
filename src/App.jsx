@@ -23,9 +23,46 @@ function App() {
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
 
+  // Countdown timer state
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  // Store total countdown for progress calculation
+  const [totalCountdown, setTotalCountdown] = useState(0);
+
   // Internal drag tracking refs (no re-render needed)
   const isDragging = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
+
+  // Calculate countdown timer to August 17, 2026
+  useEffect(() => {
+    const calculateCountdown = () => {
+      // Target date: August 17, 2026 at 00:00 in Africa/Accra timezone
+      const targetDate = new Date('2026-08-17T00:00:00').getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setCountdown({ days, hours, minutes, seconds });
+      
+      // Store total countdown once on initial calculation
+      if (totalCountdown === 0) {
+        setTotalCountdown(distance);
+      }
+    };
+
+    calculateCountdown();
+    const timer = setInterval(calculateCountdown, 1000);
+    return () => clearInterval(timer);
+  }, [totalCountdown]);
 
   // Clean up object URLs to prevent memory leaks
   useEffect(() => {
@@ -162,11 +199,86 @@ function App() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="event-hero" aria-label="Event Logo">
         <div className="event-hero-inner">
+
           <img
             src="/event-logo.png"
             alt="Muhuru Bay Mission 2026 — Theme: Repentance and Healing (2 Chronicles 7:14)"
             className="event-hero-logo"
           />
+          <div className="countdown-container">
+            {/* Days Circle */}
+            <div className="countdown-circle">
+              <svg className="countdown-ring" viewBox="0 0 120 120">
+                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                <circle 
+                  className="countdown-ring-progress" 
+                  cx="60" 
+                  cy="60" 
+                  r="55"
+                  style={{
+                    strokeDashoffset: 345.6 * (1 - (countdown.days / Math.max(totalCountdown / (1000 * 60 * 60 * 24), countdown.days || 1)))
+                  }}
+                />
+              </svg>
+              <div className="countdown-value">{countdown.days}</div>
+              <div className="countdown-label">DAYS</div>
+            </div>
+
+            {/* Hours Circle */}
+            <div className="countdown-circle">
+              <svg className="countdown-ring" viewBox="0 0 120 120">
+                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                <circle 
+                  className="countdown-ring-progress" 
+                  cx="60" 
+                  cy="60" 
+                  r="55"
+                  style={{
+                    strokeDashoffset: 345.6 * (1 - (countdown.hours / 24))
+                  }}
+                />
+              </svg>
+              <div className="countdown-value">{countdown.hours}</div>
+              <div className="countdown-label">HOURS</div>
+            </div>
+
+            {/* Minutes Circle */}
+            <div className="countdown-circle">
+              <svg className="countdown-ring" viewBox="0 0 120 120">
+                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                <circle 
+                  className="countdown-ring-progress" 
+                  cx="60" 
+                  cy="60" 
+                  r="55"
+                  style={{
+                    strokeDashoffset: 345.6 * (1 - (countdown.minutes / 60))
+                  }}
+                />
+              </svg>
+              <div className="countdown-value">{countdown.minutes}</div>
+              <div className="countdown-label">MINUTES</div>
+            </div>
+
+            {/* Seconds Circle */}
+            <div className="countdown-circle">
+              <svg className="countdown-ring" viewBox="0 0 120 120">
+                <circle className="countdown-ring-bg" cx="60" cy="60" r="55" />
+                <circle 
+                  className="countdown-ring-progress" 
+                  cx="60" 
+                  cy="60" 
+                  r="55"
+                  style={{
+                    strokeDashoffset: 345.6 * (1 - (countdown.seconds / 60))
+                  }}
+                />
+              </svg>
+              <div className="countdown-value">{countdown.seconds}</div>
+              <div className="countdown-label">SECONDS</div>
+            </div>
+          </div>
+
           <div className="event-hero-details">
             <span className="event-hero-date">17th — 23rd August 2026</span>
             <span className="event-hero-venue">Muhuru Bay, Migori County, Kenya</span>
